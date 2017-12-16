@@ -7,20 +7,28 @@ This project has been tested on a [Digilent Basys 2][digilent] [FPGA]
 
 If you are a FICH student, then [read this][fich]
 
+
 ### Changelog
 
   - Created img/ directory with block diagrams and photos
+  - Uploaded assembler software
 
 ### Software
 
 * [Xilinx ISE Project Navigator][Xilinx] - FPGA design solution to synthesis and simulation
 * [MARS] - **M**IPS **A**ssembler and **R**untime **S**imulator
 
+And to use:
+
+* `minicom` terminal on Linux or `TeraTerm` on Windows. Set speed to 19200 bps 8N1.
+
+Disable the local echo. The system will validate and show the char on the screen.
+
 ### Hardware
 * [Digilent Basys 2][digilent] FPGA
 * USB to RS-232 adapter
 
-![Connections](https://github.com/cristian1604/EmbeddedMips/blob/master/img/fpga.jpg)
+![Photo of connections](https://github.com/cristian1604/EmbeddedMips/blob/master/img/fpga.jpg)
 
 Connections:
 
@@ -35,22 +43,40 @@ And between FPGA and USB adapter:
 | A3 pin (*transmitter*) | RX |
 
 
-
 ### Block Diagram
-![Block diagram](https://github.com/cristian1604/mips/blob/master/img/mips.png)
+The blocks diagram of the integrated system
 
-**As a component:**
+![Blocks diagram](https://github.com/cristian1604/EmbeddedMips/blob/master/img/scheme1.jpg)
 
-![Block diagram](https://github.com/cristian1604/mips/blob/master/img/mips_rtl.png)
 
-References:
+The external interfaces are:
 
-  - **readdata**: Data in (32 bits)
-  - **clk**: Clock signal
+  - **tx**: Serial stream of data from FPGA to RS-232 adapter
+  - **rx**: Serial stream of data from RS-232 adapter to FPGA
   - **reset**: Reset signal
-  - **address**: Address to write data (on a FIFO buffer, external memory, UART).
-  - **writedata**: Data to write (32 bits)
-  - **memwrite**: Logic signal to write the data from *writedata* port
+  - **clk**: Clock of the system (by default, uses the FPGA 50 MHz clock)
+
+### Example
+
+The firmware is commented on `firmware/` directory.
+
+The proposed example reads two numbers, one operand and another two numbers across the console of the PC.
+The system solves on the FPGA the requested operation and send the result across the UART interface to the console back.
+
+![Block diagram](https://github.com/cristian1604/EmbeddedMips/blob/master/img/example.jpeg)
+
+
+### Input mode:
+The system is capable to receive two chars (first operand) followed by the operator (add, subtraction or multiplication), and another two chars (representing the second operand).
+
+Pressing the `Enter` key, the system must return (across the UART interface to the PC) the following ASCII codes:
+  - Equal ASCII symbol (`=` or `0x3d` in hex)
+  - Result of arithmetic operation (four digits)
+  - Carriage return (`0x0d` in hex)
+  - New line feed (`0x0a` in hex)
+
+And the system will wait for new inputs.
+
 
 How I can load my own firmware?
 ----
@@ -65,27 +91,6 @@ So, the instruction
 I strongly recommend to use [MARS] software to export your code in hexadecimal format.
 
 Remember: The Instruction Memory is an array with 512 elements. Each instruction is composed by four hexadecimal tuples. So the maximum number of instructions allowed is: `512/4 = 128 instructions`. You can modify this value according to the size of the FPGA memory.
-
-### Example
-
-The firmware is detailed and it's described [here][firmware].
-
-The proposed firmware reads two numbers, one operand and another two numbers across the console of the PC.
-The system solves on the FPGA the requested operation and send the result across the UART interface to the console back.
-
-![Block diagram](https://github.com/cristian1604/EmbeddedMips/blob/master/img/example.jpeg)
-
-
-### Input mode:
-The system is capable to receive two chars (first operand) followed by the operator (sum, subtraction or multiplication), and another two chars (representing the second operand).
-
-Pressing the `Enter` key, the system must return (across the UART interface to the PC) the following ASCII codes:
-  - Equal ASCII symbol (`=` or `0x3d` in hex)
-  - Result of arithmetic operation (four digits)
-  - Carriage return (`0x0d` in hex)
-  - New line feed (`0x0a` in hex)
-
-And the system will wait for new inputs.
 
 
 **NOTE!** If you use MARS software, watch out all the *jump* instructions. The software **always** export the line like
