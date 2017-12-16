@@ -1,7 +1,7 @@
 # Embedded System Calculator
-VHDL implementation of an embedded system that is capable to communicate across a RS-232 serial interface with the PC
+VHDL implementation of an embedded system that is capable to communicate across a RS-232 serial interface with the PC and solve easy operations like add, subtraction and multiplication.
 
-**This project uses the MIPS processor implemented [here][mips]**
+**This project uses the MIPS processor implemented [here][mips]** Download it before run this project!
 
 This project has been tested on a [Digilent Basys 2][digilent] [FPGA]
 
@@ -58,7 +58,8 @@ The external interfaces are:
 
 ### Example
 
-The firmware is commented on `firmware/` directory.
+The firmware is provided and commented on `firmware/` directory. [Click to view][firmware]
+Also, a `.bit` file is provided to load in the FPGA (Digilent Basys 2) to test this solution quickly.
 
 The proposed example reads two numbers, one operand and another two numbers across the console of the PC.
 The system solves on the FPGA the requested operation and send the result across the UART interface to the console back.
@@ -124,3 +125,4 @@ Facultad de Ingeniería y Ciencias Hídricas - Universidad Nacional del Litoral
    [mars]: <http://courses.missouristate.edu/kenvollmar/mars/>
    [fich]: <http://github.com/cristian1604/mips/blob/master/img/FICH_note.md>
    [mips]: <http://github.com/cristian1604/mips>
+   [firmware]: <https://github.com/cristian1604/EmbeddedMips/blob/master/firmware>
