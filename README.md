@@ -1,7 +1,7 @@
 # Embedded System Calculator
 VHDL implementation of an embedded system that is capable to communicate across a RS-232 serial interface with the PC and solve easy operations like add, subtraction and multiplication.
 
-**This project uses the MIPS processor implemented [here][mips]** Download it before run this project!
+**This project requires the MIPS processor implemented [here][mips]** Download it before run this project!
 
 This project has been tested on a [Digilent Basys 2][digilent] [FPGA]
 
@@ -10,8 +10,9 @@ If you are a FICH student, then [read this][fich]
 
 ### Changelog
 
-  - Created img/ directory with block diagrams and photos
-  - Uploaded assembler software
+  - Uploaded VHDL files
+  - Minor README.md fixes
+  - Uploaded .bit file
 
 ### Software
 
@@ -59,6 +60,7 @@ The external interfaces are:
 ### Example
 
 The firmware is provided and commented on `firmware/` directory. [Click to view][firmware]
+
 Also, a `.bit` file is provided to load in the FPGA (Digilent Basys 2) to test this solution quickly.
 
 The proposed example reads two numbers, one operand and another two numbers across the console of the PC.

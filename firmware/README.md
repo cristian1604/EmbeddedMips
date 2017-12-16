@@ -1,9 +1,10 @@
 # Example code
-Here is provided the code converted in hexadecimal and formatted ready to load into MIPS Instruction Memory.
+Here is provided the assembler code converted in hexadecimal and formatted ready to load into MIPS Instruction Memory.
 For more information about how to do that, please read [this][mips].
 
-The software is in `Firmware.asm` file. The same code converted in hexadecimal code is:
+The software is in `Firmware.asm` file.
 
+### Code
 ```hexadecimal
 x"20",x"10",x"00",x"00",
 x"20",x"11",x"00",x"00",
@@ -126,7 +127,7 @@ x"08",x"00",x"00",x"02",
 ```
 
 
-### Input mode:
+### Whats this code do?
 The system is capable to receive two chars (first operand) followed by the operator (add, subtraction or multiplication), and another two chars (representing the second operand).
 
 Pressing the `Enter` key, the system must return (across the UART interface to the PC) the following ASCII codes:
@@ -136,6 +137,12 @@ Pressing the `Enter` key, the system must return (across the UART interface to t
   - New line feed (`0x0a` in hex)
 
 And the system will wait for new inputs.
+
+### Where I put this code?
+The code goes in `Instruction_Memory.vhd` file.
+
+### What is the maximum number of instructions that this processor can handle?
+This information is on [MIPS] repository
 
 
 About
