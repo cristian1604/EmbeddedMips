@@ -10,9 +10,8 @@ If you are a FICH student, then [read this][fich]
 
 ### Changelog
 
-  - Uploaded VHDL files
-  - Minor README.md fixes
-  - Uploaded .bit file
+  - Uploaded external block diagram
+  - Explain addresses on `Address Decoder` unit
 
 ### Software
 
@@ -44,11 +43,13 @@ And between FPGA and USB adapter:
 | A3 pin (*transmitter*) | RX |
 
 
-### Block Diagram
+### Blocks Diagram
 The blocks diagram of the integrated system
 
-![Blocks diagram](https://github.com/cristian1604/EmbeddedMips/blob/master/img/scheme1.jpg)
+![Full solution](https://github.com/cristian1604/EmbeddedMips/blob/master/img/scheme1.jpg)
 
+
+![Block diagram](https://github.com/cristian1604/EmbeddedMips/blob/master/img/external_block.jpg)
 
 The external interfaces are:
 

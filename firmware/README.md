@@ -4,7 +4,15 @@ For more information about how to do that, please read [this][mips].
 
 The software is in `Firmware.asm` file.
 
+### Addresses
+The addresses to send/receive data are settled on the `Address Decoder` unit. These address are:
+  * `0xFFFFFF15` read from UART or write to UART. Using `lw` or `sw` instructions.
+  * `0xFFFFFF16` RX Empty flag. This address will return `1` if the RX FIFO has information to be read. Otherwise is `0`
+  * `0xFFFFFF17` TX Full flag. This address will return `1` if the TX FIFO is full to send data. Otherwise is `0`
+
 ### Code
+The following code is explained below.
+
 ```hexadecimal
 x"20",x"10",x"00",x"00",
 x"20",x"11",x"00",x"00",
